@@ -24,11 +24,11 @@
             {{ tag.label }}
           </span>
         </el-icon>
-        <template #title v-show="!isMobileFlag">
+        <!-- <template #title v-show="!isMobileFlag">
           <span v-show="!isMobileFlag">
             {{ tag.label }}
           </span>
-        </template>
+        </template> -->
       </el-menu-item>
     </el-menu>
 
@@ -42,16 +42,16 @@
       @close="handleClose"
     >
       <el-menu-item index="about" @click="openAbout()">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>关于我们</span>
-        </template>
+        <el-icon
+          ><setting />
+          <span style="font-size: 5px; font-style: normal"> 关于我们 </span>
+        </el-icon>
       </el-menu-item>
       <el-menu-item index="node" @click="openTellUs()">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>留言交流</span>
-        </template>
+        <el-icon
+          ><setting />
+          <span style="font-size: 5px; font-style: normal"> 留言交流 </span>
+        </el-icon>
       </el-menu-item>
     </el-menu>
     <about v-show="isOpenAbout" @close="isOpenAbout = false"></about>
