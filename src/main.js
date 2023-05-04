@@ -4,8 +4,8 @@ import './core/gin-vue-admin'
 // 引入封装的router
 import router from '@/router/index'
 import '@/permission'
-//import run from '@/core/gin-vue-admin.js'
-//import auth from '@/directive/auth'
+// import run from '@/core/gin-vue-admin.js'
+// import auth from '@/directive/auth'
 import { store } from '@/pinia'
 import App from './App.vue'
 import { initDom } from './utils/positionToCode'
@@ -14,6 +14,7 @@ import 'element-plus/es/components/loading/style/css'
 import 'element-plus/es/components/notification/style/css'
 import 'element-plus/es/components/message-box/style/css'
 import './style/element_visiable.scss'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 initDom()
 /**
@@ -31,11 +32,13 @@ initDom()
 
 const app = createApp(App)
 app.config.productionTip = false
-
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 app
-  //.use(run)
+  // .use(run)
   .use(store)
-  //.use(auth)
+  // .use(auth)
   .use(router)
   .mount('#app')
 
