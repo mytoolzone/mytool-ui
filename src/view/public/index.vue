@@ -4,13 +4,13 @@
       <top></top>
     </nav>
 
-    <nav class="sidebar" :class="{'mobile-sidebar': isMobileFlag}">
-      <sidebar @chooseMenu="chooseMenu" ></sidebar>
+    <nav class="sidebar" :class="{ 'mobile-sidebar': isMobileFlag }">
+      <sidebar @chooseMenu="chooseMenu"></sidebar>
     </nav>
 
-    <div class="main-content" :class="{'mobile-content': isMobileFlag}">
-        <!-- 这里是页面主要内容 -->
-        <router-view></router-view>
+    <div class="main-content" :class="{ 'mobile-content': isMobileFlag }">
+      <!-- 这里是页面主要内容 -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -20,8 +20,7 @@ import Top from './components/header.vue'
 import Sidebar from './components/sidebar.vue'
 import Search from './components/search.vue'
 import Cardlist from './components/cardlist.vue'
-import {isMobile}  from '@/utils/page.js'
-
+import { isMobile } from '@/utils/page.js'
 
 export default {
   name: 'MyPage',
@@ -34,18 +33,17 @@ export default {
   data() {
     return {
       isMobileFlag: false
-    };
+    }
   },
   mounted() {
     this.isMobileFlag = isMobile()
   },
   methods: {
-    chooseMenu(tag){
+    chooseMenu(tag) {
       console.log('index -- chooseMenu', tag)
-    },
-    
+    }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -57,7 +55,7 @@ export default {
 .navbar {
   background-color: #fff;
   width: 100%;
-  height: 80px;
+  height: 48px;
   position: fixed;
   z-index: 1000;
 }
@@ -65,19 +63,19 @@ export default {
 .sidebar {
   height: 100vh;
   margin: 0px;
-  padding-top: 80px;
+  padding-top: 48px;
   width: 160px;
 }
-.mobile-sidebar{
+.mobile-sidebar {
   width: 60px;
 }
 
 .main-content {
-  height: calc(100vh - 80px) ;
+  height: calc(100vh - 48px);
   width: calc(100vw - 160px);
   margin: 0px;
-  background-color: #1A1B1D;
-  padding-top: 100px;
+  background-color: #1a1b1d;
+  padding-top: 60px;
   font-size: 24px;
   line-height: 1.5;
   color: #2f3542;
@@ -85,25 +83,24 @@ export default {
 }
 
 .main-content::-webkit-scrollbar {
-  width: 2px; 
+  width: 2px;
 }
 
 .main-content::-webkit-scrollbar-thumb {
   border-radius: 2px;
-  background: #4F5050;
+  background: #4f5050;
   height: 60px !important;
 }
 .main-content::-webkit-scrollbar-thumb:hover {
   border-radius: 2px;
-  background:  #EF3842;
+  background: #ef3842;
 }
 .main-content::-webkit-scrollbar-track-piece {
   background-color: #3d3b3b !important;
   border-radius: 2px;
 }
 
-.mobile-content{
+.mobile-content {
   width: calc(100vw - 50px);
 }
-
 </style>

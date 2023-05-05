@@ -281,7 +281,7 @@ export default {
 }
 .mymenu-top {
   flex: 8;
-  height: calc(100vh - 80px - 120px);
+  height: calc(100vh - 48px - 120px);
   overflow-y: scroll;
   border-right: none;
 }
