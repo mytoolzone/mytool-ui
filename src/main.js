@@ -7,6 +7,7 @@ import '@/permission'
 // import run from '@/core/gin-vue-admin.js'
 // import auth from '@/directive/auth'
 import { store } from '@/pinia'
+import vuexStore from '@/stores'
 import App from './App.vue'
 import { initDom } from './utils/positionToCode'
 import 'element-plus/es/components/message/style/css'
@@ -38,6 +39,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app
   // .use(run)
   .use(store)
+  .use(vuexStore)
   // .use(auth)
   .use(router)
   .mount('#app')
