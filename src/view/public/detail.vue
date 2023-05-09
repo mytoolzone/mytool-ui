@@ -60,7 +60,11 @@ import Recommends from './components/recommend.vue'
 import AsyncComponent from './tools/async-component.vue'
 import { findIndexTool, getRecommendToolList } from '@/api/tools'
 import { findIndexToolPackage } from '@/api/toolPackage'
-import { createUserCollectTools, deleteUserCollectTools,findUserCollectTool} from '@/api/userCollectTools'
+import {
+  createUserCollectTools,
+  deleteUserCollectTools,
+  findUserCollectTool
+} from '@/api/userCollectTools'
 import { useUserStore } from '@/pinia/modules/user'
 
 export default {
@@ -115,11 +119,11 @@ export default {
         }
       })
 
-      findUserCollectTool( {toolId: parseInt(this.id)}).then( res => {
-        console.log('res ==>' , res)
-        if(res.data.reuserCollectTools.ID > 0 ){
-           this.isCollect = true
-        }else{
+      findUserCollectTool({ toolId: parseInt(this.id) }).then((res) => {
+        console.log('res ==>', res)
+        if (res.data.reuserCollectTools.ID > 0) {
+          this.isCollect = true
+        } else {
           this.isCollect = false
         }
       })
@@ -127,9 +131,9 @@ export default {
     collect() {
       const userStore = useUserStore()
 
-      if(!this.isCollect){
+      if (!this.isCollect) {
         createUserCollectTools({ toolId: parseInt(this.id) })
-      }else{
+      } else {
         deleteUserCollectTools({ toolId: parseInt(this.id) })
       }
       this.isCollect = !this.isCollect
@@ -149,10 +153,9 @@ export default {
   color: #f2f2f2;
 
   .image-container {
-    padding: 15px;
     float: left;
     img {
-      padding-top: 25px;
+      padding-top: 10px;
       padding-left: 45px;
       width: 120px;
       min-height: 90px;
@@ -214,6 +217,7 @@ export default {
     min-height: 30px;
     color: #c2c7ca;
     line-height: 2em;
+    text-indent: 2em;
   }
 
   .workbench {

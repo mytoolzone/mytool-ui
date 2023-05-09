@@ -10,7 +10,7 @@
       direction="ltr"
       custom-class="layout-aside"
       :with-header="false"
-      :size="200"
+      :size="150"
     >
       <Menus :tags="tags"></Menus>
     </el-drawer>
@@ -217,13 +217,17 @@ export default {
 
 <style scoped>
 .sidebar {
-  width: 200px;
+  width: 150px;
 }
 .mymenu-wrap {
   margin: 0%;
   padding: 0px;
   border: none;
 }
+::v-deep(.el-drawer) {
+  background: #272929;
+}
+
 ::v-deep(.el-drawer__body) {
   padding: 0px !important;
 }

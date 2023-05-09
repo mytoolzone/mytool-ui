@@ -74,7 +74,7 @@ export default {
 }
 
 .main-content {
-  height: 100%;
+  height: calc(100vh - 80px);
   width: calc(100vw - 160px);
   margin: 0px;
   background-color: #1a1b1d;
@@ -110,7 +110,7 @@ export default {
   flex-basis: auto;
   box-sizing: border-box;
   min-width: 0;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 .container {
   display: flex;

@@ -94,8 +94,8 @@ export default {
   width: 100%;
   padding-left: 15px;
   /*justify-content: space-around;*/
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .card {

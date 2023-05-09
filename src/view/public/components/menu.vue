@@ -3,6 +3,7 @@
     active-text-color="#EFEFEF"
     background-color="#272929"
     class="el-menu-vertical-demo mymenu-top"
+    :style="{ height: isMobileFlag ? '100vh' : 'calc(100vh - 130px)' }"
     default-active="1-1"
     text-color="#BFC2C8"
     @open="handleOpen"
@@ -102,7 +103,7 @@ export default {
   width: 100%;
   flex: 8;
   height: 100vh;
-
+  /* height: calc(100vh - 130px); */
   overflow-y: scroll;
   border-right: none;
 }
@@ -131,7 +132,7 @@ export default {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 200px;
+  width: 150px;
 }
 .mymenu-bottom .el-menu-item span,
 .mymenu-top .el-menu-item span {
