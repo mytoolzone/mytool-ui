@@ -101,7 +101,7 @@ export default {
 .mymenu-top {
   width: 100%;
   flex: 8;
-  height: 100%;
+  height: 100vh;
 
   overflow-y: scroll;
   border-right: none;

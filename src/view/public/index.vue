@@ -71,11 +71,7 @@ export default {
   height: 100vh;
   margin: 0px;
   padding-top: 48px;
-  /* width: 160px; */
 }
-/* .mobile-sidebar {
-  width: 60px;
-} */
 
 .main-content {
   height: 100%;
@@ -108,7 +104,7 @@ export default {
 }
 
 .mobile-content {
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
   flex: 1;
   flex-basis: auto;
