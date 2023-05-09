@@ -4,13 +4,15 @@
       <top></top>
     </nav>
 
-    <nav class="sidebar" :class="{ 'mobile-sidebar': isMobileFlag }">
-      <sidebar @chooseMenu="chooseMenu"></sidebar>
-    </nav>
+    <div class="container">
+      <nav class="sidebar">
+        <sidebar @chooseMenu="chooseMenu"></sidebar>
+      </nav>
 
-    <div class="main-content" :class="{ 'mobile-content': isMobileFlag }">
-      <!-- 这里是页面主要内容 -->
-      <router-view></router-view>
+      <div class="main-content" :class="{ 'mobile-content': isMobileFlag }">
+        <!-- 这里是页面主要内容 -->
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +23,7 @@ import Sidebar from './components/sidebar.vue'
 import Search from './components/search.vue'
 import Cardlist from './components/cardlist.vue'
 import { isMobile } from '@/utils/page.js'
+import { mapState } from 'vuex'
 
 export default {
   name: 'MyPage',
@@ -35,8 +38,12 @@ export default {
       isMobileFlag: false
     }
   },
+  computed: {
+    ...mapState(['isCollapse'])
+  },
   mounted() {
     this.isMobileFlag = isMobile()
+    console.log(this.isCollapse)
   },
   methods: {
     chooseMenu(tag) {
@@ -64,14 +71,14 @@ export default {
   height: 100vh;
   margin: 0px;
   padding-top: 48px;
-  width: 160px;
+  /* width: 160px; */
 }
-.mobile-sidebar {
+/* .mobile-sidebar {
   width: 60px;
-}
+} */
 
 .main-content {
-  height: calc(100vh - 48px);
+  height: 100%;
   width: calc(100vw - 160px);
   margin: 0px;
   background-color: #1a1b1d;
@@ -101,6 +108,20 @@ export default {
 }
 
 .mobile-content {
-  width: calc(100vw - 50px);
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
 }
 </style>

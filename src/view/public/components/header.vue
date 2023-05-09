@@ -1,7 +1,11 @@
 <template>
   <el-header class="layout-header" height="48px">
-    <div class="logo" @click="onClickLogo">
-      <img src="https://tools.mytool.zone/logo.png" alt="Logo" />
+    <div class="logo">
+      <img
+        src="https://tools.mytool.zone/logo.png"
+        alt="Logo"
+        @click="onClickLogo"
+      />
       <ul>
         <li v-for="(item, index) in navItems" :key="index">
           <a
@@ -13,7 +17,7 @@
           </a>
         </li>
       </ul>
-      <el-icon v-if="isMobileFlag"><Expand /></el-icon>
+      <el-icon v-if="isMobileFlag" @click="onClickLogo"><Expand /></el-icon>
     </div>
 
     <div style="flex: 1"></div>
@@ -30,18 +34,23 @@
 <script>
 import { isMobile } from '@/utils/page.js'
 
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
       isMobileFlag: false,
       navItems: [
         { text: 'AiTool', link: '#/?tag=ai', icon: 'icon-home' }
-        { text: '快命令', link: '#/user/userCmds', icon: 'icon-cog' },
-        { text: '收藏', link: '#/user/collect', icon: 'icon-cog' },
-        { text: '我的', link: '#/layout/person', icon: 'icon-gift' },
+        // { text: '快命令', link: '#/user/userCmds', icon: 'icon-cog' },
+        // { text: '收藏', link: '#/user/collect', icon: 'icon-cog' },
+        // { text: '我的', link: '#/layout/person', icon: 'icon-gift' }
       ],
       activeIndex: -1
     }
+  },
+  computed: {
+    ...mapState(['isCollapse'])
   },
   mounted() {
     this.isMobileFlag = isMobile()
@@ -60,6 +69,12 @@ export default {
       this.$router.push({
         name: 'Safe'
       })
+    },
+    onClickLogo() {
+      this.$store.commit('setIsCollapse', {
+        isBlooen: !this.isCollapse
+      })
+      console.log(this.isCollapse)
     }
   }
 }
