@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="body">
-      <p>{{ article.desc }}</p>
+      {{ article.desc }}
     </div>
 
     <div v-if="article.attr == 'innnerComponent'" style="display: block">
@@ -45,7 +45,7 @@
             缩小功能区
           </el-col>
         </el-row>
-        <iframe :src="toolPackage.apiUrl" width="100%" height="360px"> </iframe>
+        <iframe :src="toolPackage.apiUrl" width="100%" height="480px"> </iframe>
       </div>
     </div>
 
@@ -207,31 +207,24 @@ export default {
 
   .body {
     background-color: #272929;
-    padding: 10px;
+    padding: 5px;
     border-radius: 15px;
     margin-bottom: 5px;
-  }
-  .body p {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-      'Noto Color Emoji';
     font-size: 16px;
-    min-height: 50px;
-    color: #616a72;
-    text-indent: 2em;
+    min-height: 30px;
+    color: #c2c7ca;
     line-height: 2em;
-    margin-top: 25px;
   }
 
   .workbench {
     .btn {
       font-weight: 600;
       cursor: pointer;
-      padding: 8px 0px;
+      padding: 5px 0px;
       margin-left: 15px;
       text-align: center;
       background: #333232;
+      color: #d94e0d;
     }
     iframe {
       border: none;
