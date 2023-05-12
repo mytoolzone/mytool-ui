@@ -8,11 +8,12 @@
       class="el-drawers"
       v-model="isCollapse"
       direction="ltr"
-      custom-class="layout-aside"
-      :with-header="false"
       :size="150"
     >
-      <Menus :tags="tags"></Menus>
+      <template #header="{ close, titleId, titleClass }">
+        <img class="titleimg" src="https://tools.mytool.zone/logo.png" alt="" />
+      </template>
+      <Menus :tags="tags" @collapse="collapse"></Menus>
     </el-drawer>
   </div>
 </template>
@@ -39,6 +40,7 @@ export default {
       isOpenAbout: false,
       isOpenTellUs: false,
       isMobileFlag: false,
+      isMenuFlag: false,
       tags: []
     }
   },
@@ -210,12 +212,20 @@ export default {
       const userStore = useUserStore()
       userStore.LoginOut()
       //this.$router.push({name:'Index'})
+    },
+    collapse() {
+      this.$store.commit('setIsCollapse', {
+        isBlooen: !this.isCollapse
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+.titleimg {
+  width: 50px;
+}
 .sidebar {
   width: 150px;
 }
@@ -230,5 +240,24 @@ export default {
 
 ::v-deep(.el-drawer__body) {
   padding: 0px !important;
+  overflow-y: auto;
+}
+
+::v-deep(.el-drawer__body)::-webkit-scrollbar {
+  width: 5px;
+}
+
+::v-deep(.el-drawer__body::-webkit-scrollbar-thumb) {
+  border-radius: 2px;
+  background: #4f5050;
+  height: 60px !important;
+}
+::v-deep(.el-drawer__body::-webkit-scrollbar-thumb:hover) {
+  border-radius: 2px;
+  background: #ef3842;
+}
+::v-deep(.el-drawer__body::-webkit-scrollbar-track-piece) {
+  background-color: #3d3b3b !important;
+  border-radius: 2px;
 }
 </style>

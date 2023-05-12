@@ -1,12 +1,15 @@
 <template>
-  <div class="wrap">
-    <div class="card-list">
-      <div
-        v-for="(item, index) in items"
-        :key="index"
-        class="card"
-        @click="goToDetail(item.ID)"
-      >
+  <el-row :gutter="20">
+    <el-col
+      :sm="24"
+      :md="12"
+      :lg="6"
+      :xl="4"
+      v-for="(item, index) in items"
+      :key="index"
+      @click="goToDetail(item.ID)"
+    >
+      <div class="card">
         <div>
           <div class="image-container">
             <a
@@ -25,11 +28,10 @@
         </div>
         <div class="tags">
           <span class="tag">{{ item.tags }}</span>
-          <!-- <span v-for="(tag, index) in item.tags" :key="index" class="tag">{{ tag }}</span> -->
         </div>
       </div>
-    </div>
-  </div>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -85,23 +87,22 @@ export default {
 </script>
 
 <style scoped>
-.wrap {
+.el-row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
-.card-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  width: 100%;
-  padding-left: 15px;
-  /*justify-content: space-around;*/
-  /* justify-content: center;
-  align-items: center; */
+.el-col {
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.el-col:last-child {
+  margin-bottom: 0;
 }
 
 .card {
   background-color: #272929;
   color: #c6c9cf;
-  width: 250px;
+
   height: 90px;
   padding: 16px;
   border: none;
@@ -111,7 +112,6 @@ export default {
 }
 
 .card:hover {
-  /*box-shadow: 4px 4px 12px rgba(150, 145, 137, 0.688);*/
   transform: translate(0, -5px);
   color: #fafbfd;
   cursor: pointer;

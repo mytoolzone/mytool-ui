@@ -74,8 +74,8 @@ export default {
 }
 
 .main-content {
-  height: calc(100vh - 80px);
-  width: calc(100vw - 160px);
+  height: calc(100vh - 60px);
+  width: calc(100vw - 150px);
   margin: 0px;
   background-color: #1a1b1d;
   padding-top: 60px;

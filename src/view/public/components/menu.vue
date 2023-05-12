@@ -3,7 +3,10 @@
     active-text-color="#EFEFEF"
     background-color="#272929"
     class="el-menu-vertical-demo mymenu-top"
-    :style="{ height: isMobileFlag ? '100vh' : 'calc(100vh - 130px)' }"
+    :style="{
+      height: isMobileFlag ? '100vh' : 'calc(100vh - 130px)',
+      'overflow-y': isMobileFlag ? 'hidden' : ' scroll'
+    }"
     default-active="1-1"
     text-color="#BFC2C8"
     @open="handleOpen"
@@ -75,7 +78,7 @@ export default {
   },
   mounted() {
     this.isMobileFlag = isMobile()
-    console.log(this.propName)
+    // console.log(this.propName)
   },
   methods: {
     openAbout() {
@@ -93,6 +96,8 @@ export default {
       let key = menu.value
       this.$emit('chooseMenu', key)
       this.$router.push({ name: 'Index', query: { tag: key } })
+      this.isMenuFlag = !this.isMenuFlag
+      this.$emit('collapse')
     }
   }
 }
@@ -104,7 +109,7 @@ export default {
   flex: 8;
   height: 100vh;
   /* height: calc(100vh - 130px); */
-  overflow-y: scroll;
+
   border-right: none;
 }
 .mymenu-top::-webkit-scrollbar {
