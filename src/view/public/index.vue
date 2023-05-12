@@ -9,7 +9,11 @@
         <sidebar @chooseMenu="chooseMenu"></sidebar>
       </nav>
 
-      <div class="main-content" :class="{ 'mobile-content': isMobileFlag }">
+      <div
+        class="main-content"
+        :class="{ 'mobile-content': isMobileFlag }"
+        :style="{ height: isMobileFlag ? '100vh' : 'calc(100vh - 60px)' }"
+      >
         <!-- 这里是页面主要内容 -->
         <router-view></router-view>
       </div>
