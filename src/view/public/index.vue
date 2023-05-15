@@ -115,8 +115,8 @@ export default {
   box-sizing: border-box;
   min-width: 0;
   overflow-y: scroll;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .container {
   display: flex;

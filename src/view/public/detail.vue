@@ -202,7 +202,7 @@ export default {
     overflow: hidden;
     box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    padding: 40px 0px;
+    padding: 18px 0px;
   }
 
   .image-container {
@@ -212,7 +212,7 @@ export default {
       top: 14%;
       left: 19%;
       border-radius: 50%;
-      width: 50%;
+      width: 98px;
     }
   }
   .image-container-mobile {
@@ -220,7 +220,7 @@ export default {
       margin: auto;
       display: block;
       border-radius: 50%;
-      width: 50%;
+      width: 90px;
     }
   }
 
