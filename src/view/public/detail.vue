@@ -1,32 +1,47 @@
 <template>
   <div class="article">
-    <div class="image-container">
-      <img :src="article.icon" alt="Article Image" />
-    </div>
-    <div class="content-container">
-      <h1>{{ article.name }}</h1>
-      <div class="info">
-        <span
-          >访问地址:
-          <a :href="toolPackage.apiUrl" target="_blank" style="color: #62ebf4">
-            {{ toolPackage.apiUrl }}</a
-          ></span
-        >
-        <!-- <span>Date: {{ article.CreatedAt }}</span> -->
-        <div @click="collect">
-          <el-icon><Star /></el-icon>
+    <el-row type="flex" justify="center" align="middle">
+      <el-col :sm="22" :md="22" :lg="3" :xl="3" :class="imageFlag">
+        <div :class="siteico">
+          <img :src="article.icon" alt="Article Image" />
+          <div class="tool-actions" @click="collect">
+            <el-tooltip
+              :content="isCollect ? '取消收藏' : '加入收藏'"
+              placement="top"
+              effect="light"
+            >
+              <el-icon v-if="isCollect"><StarFilled /></el-icon>
+              <el-icon v-else><Star /></el-icon>
+            </el-tooltip>
+          </div>
+        </div>
+      </el-col>
+      <el-col :sm="22" :md="22" :lg="10" :xl="10" :class="contentFlag">
+        <h1>{{ article.name }}</h1>
+        <div class="info">
+          <span
+            >访问地址:
+            <a
+              :href="toolPackage.apiUrl"
+              target="_blank"
+              style="color: #62ebf4"
+            >
+              {{ toolPackage.apiUrl }}</a
+            ></span
+          >
 
-          <i>{{ isCollect ? '取消收藏' : '加入收藏' }} </i>
+          <div class="tags">
+            <span>{{ article.tags }}</span>
+            <!-- <span v-for="(tag, index) in article.tags" :key="index">{{ tag }}</span> -->
+          </div>
         </div>
-        <div class="tags">
-          <span>{{ article.tags }}</span>
-          <!-- <span v-for="(tag, index) in article.tags" :key="index">{{ tag }}</span> -->
-        </div>
-      </div>
-    </div>
-    <div class="body">
-      {{ article.desc }}
-    </div>
+      </el-col>
+    </el-row>
+    <el-row type="flex" justify="center" align="middle">
+      <el-col :xs="24" :sm="24" :md="24" :lg="15" :xl="15" class="body">
+        {{ article.desc }}
+      </el-col>
+    </el-row>
 
     <div v-if="article.attr == 'innnerComponent'" style="display: block">
       <async-component
@@ -35,8 +50,15 @@
       ></async-component>
     </div>
 
-    <div v-if="article.attr == 'iframe'">
-      <div class="workbench" :class="{ max: isMaxWorkbench }">
+    <el-row v-if="article.attr == 'iframe'" justify="center" align="middle">
+      <el-col
+        class="workbench"
+        :class="{ max: isMaxWorkbench }"
+        :sm="22"
+        :md="22"
+        :lg="15"
+        :xl="15"
+      >
         <el-row>
           <el-col :span="5" @click="expandWorkbench" class="btn">
             放大功能区
@@ -46,12 +68,10 @@
           </el-col>
         </el-row>
         <iframe :src="toolPackage.apiUrl" width="100%" height="480px"> </iframe>
-      </div>
-    </div>
+      </el-col>
+    </el-row>
 
-    <div class="recommend">
-      <recommends></recommends>
-    </div>
+    <recommends></recommends>
   </div>
 </template>
 
@@ -60,6 +80,7 @@ import Recommends from './components/recommend.vue'
 import AsyncComponent from './tools/async-component.vue'
 import { findIndexTool, getRecommendToolList } from '@/api/tools'
 import { findIndexToolPackage } from '@/api/toolPackage'
+import { isMobile } from '@/utils/page.js'
 import {
   createUserCollectTools,
   deleteUserCollectTools,
@@ -81,6 +102,17 @@ export default {
       isCollect: false
     }
   },
+  computed: {
+    imageFlag() {
+      return isMobile() ? 'image-container-mobile ' : 'image-container  '
+    },
+    contentFlag() {
+      return isMobile() ? 'content-container-mobile' : 'content-container'
+    },
+    siteico() {
+      return isMobile() ? 'siteico-mobile' : 'siteico'
+    }
+  },
   watch: {
     '$route.query.id': function () {
       // 只要categoryId的值发生变化,这个方法就会被调用
@@ -94,6 +126,8 @@ export default {
   mounted() {
     this.id = this.$route.query.id
     this.load()
+    this.isMobileFlag = isMobile()
+    console.log(this.isMobileFlag, 'isMobileFlag')
   },
   methods: {
     expandWorkbench() {
@@ -145,26 +179,56 @@ export default {
 <style lang="scss" scoped>
 .article {
   align-items: center;
-  width: 800px;
+  width: 100%;
   margin: 0 auto;
   padding: 0px;
   font-size: 16px;
   line-height: 1.5;
   color: #f2f2f2;
 
+  .siteico {
+    background: #e6e8ed;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    padding: 65px 20px;
+    width: 100%;
+  }
+  .siteico-mobile {
+    background: #931700;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 40px 0px;
+  }
+
   .image-container {
-    float: left;
     img {
-      padding-top: 10px;
-      padding-left: 45px;
-      width: 120px;
-      min-height: 90px;
+      min-width: 72px !important;
+      position: absolute;
+      top: 14%;
+      left: 19%;
+      border-radius: 50%;
+      width: 50%;
+    }
+  }
+  .image-container-mobile {
+    img {
+      margin: auto;
+      display: block;
+      border-radius: 50%;
+      width: 50%;
     }
   }
 
   .content-container {
-    width: 500px;
-    margin-left: 230px;
+    margin-left: 70px;
+  }
+  .content-container,
+  .content-container-mobile {
     h1 {
       font-size: 30px;
       margin-bottom: 10px;
@@ -225,7 +289,7 @@ export default {
       font-weight: 600;
       cursor: pointer;
       padding: 5px 0px;
-      margin-left: 15px;
+      margin-right: 15px;
       text-align: center;
       background: #333232;
       color: #d94e0d;
@@ -247,6 +311,24 @@ export default {
     opacity: 0.99;
     iframe {
       height: calc(100vh - 80px);
+    }
+  }
+  .tool-actions {
+    color: #424446;
+    backdrop-filter: blur(5px);
+    background-color: rgba(250, 250, 250, 0.5);
+    border-color: transparent;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    .el-icon {
+      font-size: 16px;
+      margin-left: 10px;
+      line-height: 35px;
+      height: 35px;
     }
   }
 }
