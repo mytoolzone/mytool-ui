@@ -50,6 +50,8 @@
       ></async-component>
     </div>
 
+    <Floating v-show="isMobileFlag"></Floating>
+
     <el-row v-if="article.attr == 'iframe'" justify="center" align="middle">
       <el-col
         class="workbench"
@@ -87,11 +89,12 @@ import {
   findUserCollectTool
 } from '@/api/userCollectTools'
 import { useUserStore } from '@/pinia/modules/user'
-
+import Floating from './components/floating.vue'
 export default {
   components: {
     Recommends,
-    AsyncComponent
+    AsyncComponent,
+    Floating
   },
   data() {
     return {
@@ -127,7 +130,6 @@ export default {
     this.id = this.$route.query.id
     this.load()
     this.isMobileFlag = isMobile()
-    console.log(this.isMobileFlag, 'isMobileFlag')
   },
   methods: {
     expandWorkbench() {
@@ -197,7 +199,8 @@ export default {
     width: 100%;
   }
   .siteico-mobile {
-    background: #931700;
+    background: #cf8312;
+    // background: rgb(10, 185, 156);
     position: relative;
     overflow: hidden;
     box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.15);

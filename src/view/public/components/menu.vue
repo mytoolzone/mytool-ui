@@ -109,6 +109,7 @@ export default {
   flex: 8;
   height: 100vh;
   /* height: calc(100vh - 130px); */
+  margin-bottom: 110px;
 
   border-right: none;
 }
