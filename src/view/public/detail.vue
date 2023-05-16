@@ -73,6 +73,19 @@
       </el-col>
     </el-row>
 
+    <el-row v-if="article.attr == 'iframe'" justify="center" align="middle">
+      <el-col
+        class="workbench"
+        :class="{ max: isMaxWorkbench }"
+        :sm="22"
+        :md="22"
+        :lg="15"
+        :xl="15"
+      >
+        <div class="readme" v-html="toolPackage.readme"></div>
+      </el-col>
+    </el-row>
+
     <recommends></recommends>
   </div>
 </template>
@@ -179,6 +192,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .article {
   align-items: center;
   width: 100%;
@@ -301,6 +315,19 @@ export default {
       border: none;
     }
   }
+
+  .readme {
+    color: #fff6dd;
+    width: 100%;
+    > img {
+      max-width: 100%;
+    }
+    > h2 {
+      //color: #84bdff;
+      color: red !important;
+    }
+  }
+
 
   .max {
     position: fixed;
