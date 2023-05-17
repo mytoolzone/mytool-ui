@@ -18,7 +18,7 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 <style lang="scss">
 // 引入初始化样式
 #app {
-  background: #1a1b1d;
+  // background: #1a1b1d;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
