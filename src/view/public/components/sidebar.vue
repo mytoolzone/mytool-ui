@@ -9,6 +9,7 @@
       v-model="isCollapse"
       direction="ltr"
       :size="150"
+      :append-to-body="true"
     >
       <template #header="{ close, titleId, titleClass }">
         <img class="titleimg" src="https://tools.mytool.zone/logo.png" alt="" />
@@ -260,4 +261,6 @@ export default {
   background-color: #3d3b3b !important;
   border-radius: 2px;
 }
+
+/* 重置body的宽度 */
 </style>
