@@ -9,7 +9,6 @@
       v-model="isCollapse"
       direction="ltr"
       :size="150"
-      :append-to-body="true"
     >
       <template #header="{ close, titleId, titleClass }">
         <img class="titleimg" src="https://tools.mytool.zone/logo.png" alt="" />
