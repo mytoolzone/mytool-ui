@@ -74,14 +74,7 @@
     </el-row>
 
     <el-row v-if="article.attr == 'iframe'" justify="center" align="middle">
-      <el-col
-        class="workbench"
-        :class="{ max: isMaxWorkbench }"
-        :sm="22"
-        :md="22"
-        :lg="15"
-        :xl="15"
-      >
+      <el-col class="workbench" :sm="22" :md="22" :lg="15" :xl="15">
         <div class="readme" v-html="toolPackage.readme"></div>
       </el-col>
     </el-row>
@@ -167,6 +160,7 @@ export default {
       findIndexToolPackage({ ID: this.id }).then((res) => {
         if (res.code == 0) {
           this.toolPackage = res.data.retoolPackage
+
           console.log('---toolPackage', this.toolPackage)
         }
       })
