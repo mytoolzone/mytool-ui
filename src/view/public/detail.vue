@@ -58,8 +58,8 @@
         :class="{ max: isMaxWorkbench }"
         :sm="22"
         :md="22"
-        :lg="15"
-        :xl="15"
+        :lg="MaxWorkbench"
+        :xl="MaxWorkbench"
       >
         <el-row>
           <el-col :span="5" @click="expandWorkbench" class="btn">
@@ -127,6 +127,9 @@ export default {
     },
     siteico() {
       return isMobile() ? 'siteico-mobile' : 'siteico'
+    },
+    MaxWorkbench() {
+      return this.isMaxWorkbench ? 24 : 15
     }
   },
   watch: {
@@ -192,7 +195,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .article {
   align-items: center;
   width: 100%;
@@ -327,7 +329,6 @@ export default {
       color: red !important;
     }
   }
-
 
   .max {
     position: fixed;
