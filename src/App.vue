@@ -18,12 +18,13 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 <style lang="scss">
 // 引入初始化样式
 #app {
-  background: #eee;
+  // background: #1a1b1d;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
   font-weight: 400 !important;
 }
-.el-button{
+.el-button {
   font-weight: 400 !important;
 }
 </style>
