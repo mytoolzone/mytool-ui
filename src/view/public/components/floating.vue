@@ -7,12 +7,9 @@
     ref="remove"
     :style="`left: ${oLeft}px; top: ${oTop}px;`"
   >
-    <div
-      class="yuanqiu"
-      @click="onClickLogo"
-      @touchstart="handleTouchStart(1000)"
-      @touchend="handleTouchEnd"
-    >
+    <!-- @touchstart="handleTouchStart(1000)"
+      @touchend="handleTouchEnd" -->
+    <div class="yuanqiu" @click="onClickLogo">
       <img src="https://tools.mytool.zone/logo.png" />
     </div>
   </span>
@@ -37,7 +34,8 @@ export default {
       bWidth: null, // 悬钮宽度
       bHeight: null,
       click: false, // 是否是点击
-      dialogVisible: false
+      dialogVisible: false,
+      lastClickTime: null
     }
   },
   mounted() {
@@ -134,23 +132,26 @@ export default {
       this.oTop = oTop
     },
     onClickLogo() {
-      this.$store.commit('setIsCollapse', {
-        isBlooen: !this.isCollapse
-      })
+      const currentTime = new Date().getTime()
+      if (this.lastClickTime && currentTime - this.lastClickTime < 500) {
+        this.dialogVisible = !this.dialogVisible
+      } else {
+        this.$store.commit('setIsCollapse', {
+          isBlooen: !this.isCollapse
+        })
+      }
+
+      this.lastClickTime = currentTime
     },
     // 长按事件
-    handleTouchStart(time) {
-      this.pressTimer = setTimeout(() => {
-        this.dialogVisible = !this.dialogVisible
-        console.log(this.dialogVisible)
-      }, time)
-      this.showHint = true
-    },
-    // 长按结束
-    handleTouchEnd() {
-      clearTimeout(this.pressTimer)
-      this.showHint = false
+    handleTouchStart() {
+      this.dialogVisible = !this.dialogVisible
     }
+    // // 长按结束
+    // handleTouchEnd() {
+    //   clearTimeout(this.pressTimer)
+    //   this.showHint = false
+    // }
   },
   computed: {
     ...mapState(['isCollapse'])
