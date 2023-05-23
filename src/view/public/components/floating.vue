@@ -1,29 +1,29 @@
 <template>
-  <div class="removeHome">
-    <span
-      class="t-suspend-button"
-      @touchstart="onTouchStart"
-      @touchmove="onTouchMove"
-      @touchend="onTouchEnd"
-      ref="remove"
-      :style="`left: ${oLeft}px; top: ${oTop}px;`"
+  <span
+    class="t-suspend-button"
+    @touchstart="onTouchStart"
+    @touchmove="onTouchMove"
+    @touchend="onTouchEnd"
+    ref="remove"
+    :style="`left: ${oLeft}px; top: ${oTop}px;`"
+  >
+    <div
+      class="yuanqiu"
+      @click="onClickLogo"
+      @touchstart="handleTouchStart(1000)"
+      @touchend="handleTouchEnd"
     >
-      <div class="yuanqiu" @click="onClickLogo">
-        <img src="https://tools.mytool.zone/logo.png" />
-      </div>
-    </span>
-  </div>
+      <img src="https://tools.mytool.zone/logo.png" />
+    </div>
+  </span>
+
+  <Dialog :dialogVisible="dialogVisible" @close="handleTouchStart"></Dialog>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Dialog from './dialog.vue'
 export default {
-  props: {
-    img: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
     return {
       oLeft: '',
@@ -36,7 +36,8 @@ export default {
       htmlHeight: null,
       bWidth: null, // 悬钮宽度
       bHeight: null,
-      click: false // 是否是点击
+      click: false, // 是否是点击
+      dialogVisible: false
     }
   },
   mounted() {
@@ -58,29 +59,21 @@ export default {
 
       this.oW = e.clientX - this.$refs.remove.getBoundingClientRect().left
       this.oH = e.clientY - this.$refs.remove.getBoundingClientRect().top
-
-      console.log('e.clientX宽', e.clientX, 'e.clientY高', e.clientY)
-
-      console.log(
-        '移动宽',
-        this.$refs.remove.getBoundingClientRect().left,
-        '移动高',
-        this.$refs.remove.getBoundingClientRect().top
-      )
-
+      // console.log('e.clientX宽', e.clientX, 'e.clientY高', e.clientY)
+      // console.log(
+      //   '移动宽',
+      //   this.$refs.remove.getBoundingClientRect().left,
+      //   '移动高',
+      //   this.$refs.remove.getBoundingClientRect().top
+      // )
       this.htmlWidth = document.documentElement.clientWidth
       this.htmlHeight = document.documentElement.clientHeight
-
-      console.log('body宽', this.htmlWidth, 'body高', this.htmlHeight)
-
+      // console.log('body宽', this.htmlWidth, 'body高', this.htmlHeight)
       this.bWidth = this.$refs.remove.offsetWidth
       this.bHeight = this.$refs.remove.offsetHeight
-
-      console.log('a宽', this.oW, 'a高', this.oH)
-
+      // console.log('a宽', this.oW, 'a高', this.oH)
       let oLeft = e.clientX - this.oW
       let oTop = e.clientY - this.oH
-
       this.oLeft = oLeft
       this.oTop = oTop
 
@@ -141,47 +134,66 @@ export default {
       this.oTop = oTop
     },
     onClickLogo() {
-      console.log('eee')
       this.$store.commit('setIsCollapse', {
         isBlooen: !this.isCollapse
       })
+    },
+    // 长按事件
+    handleTouchStart(time) {
+      this.pressTimer = setTimeout(() => {
+        this.dialogVisible = !this.dialogVisible
+        console.log(this.dialogVisible)
+      }, time)
+      this.showHint = true
+    },
+    // 长按结束
+    handleTouchEnd() {
+      clearTimeout(this.pressTimer)
+      this.showHint = false
     }
   },
   computed: {
     ...mapState(['isCollapse'])
+  },
+  components: {
+    Dialog
   }
 }
 </script>
 
 <style lang="scss">
-.removeHome {
-  .t-suspend-button {
-    position: fixed;
-    bottom: 105px;
-    right: 9px;
-    width: 48px;
-    height: 48px;
-    border-radius: 2rem;
-    z-index: 99999999999;
-    background: #fff;
-  }
+.t-suspend-button {
+  position: fixed;
+  bottom: 105px;
+  right: 9px;
+  width: 48px;
+  height: 48px;
+  border-radius: 2rem;
+  z-index: 9999999999;
+  background: #fff;
+}
 
-  .t-suspend-button img {
+.t-suspend-button img {
+  width: 100%;
+  height: 100%;
+}
+
+.t-suspend-button-animate {
+  transition-duration: 0.4s;
+}
+.yuanqiu {
+  z-index: 99999;
+  width: 48px;
+  height: 48px;
+  img {
     width: 100%;
     height: 100%;
   }
+}
 
-  .t-suspend-button-animate {
-    transition-duration: 0.4s;
-  }
-  .yuanqiu {
-    z-index: 99999;
-    width: 48px;
-    height: 48px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
+.Dialog {
+  width: 100%;
+  height: 100%;
+  background: red;
 }
 </style>
