@@ -16,6 +16,9 @@ import 'element-plus/es/components/notification/style/css'
 import 'element-plus/es/components/message-box/style/css'
 import './style/element_visiable.scss'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import VueLazyload from 'vue3-lazyload'
+import error from './assets/error.svg'
+import loading from './assets/loading.gif'
 
 initDom()
 /**
@@ -42,6 +45,12 @@ app
   .use(vuexStore)
   // .use(auth)
   .use(router)
+  .use(VueLazyload, {
+    preLoad: 1,
+    error,
+    loading,
+    lazyComponent: true // 懒加载组件
+  })
   .mount('#app')
 
 export default app
