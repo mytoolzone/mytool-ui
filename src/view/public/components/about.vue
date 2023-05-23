@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
     <el-row>
-      <el-col class="modal-content" :lg="11" :md="11" :sm="3" :xl="3">
+      <el-col class="modal-content" :lg="11" :md="3" :sm="3" :xl="3" :xs="3">
         <span class="close" @click="close()">&times;</span>
         <h2 class="title">Mytool.zone</h2>
         <p class="content">
