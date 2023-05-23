@@ -82,13 +82,13 @@ export default {
   word-break: break-word;
   white-space: pre-line;
 }
-.title {
+/* .title {
   text-align: center;
 }
 .content {
   width: 100%;
   text-indent: 2em;
-}
+} */
 
 .close {
   color: #aaaaaa;
