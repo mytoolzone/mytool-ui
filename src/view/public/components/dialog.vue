@@ -40,7 +40,9 @@ export default {
 .close {
   color: #aaaaaa;
   font-size: 28px;
+  float: right;
   font-weight: bold;
+  padding-right: 20px;
   cursor: pointer;
 }
 
