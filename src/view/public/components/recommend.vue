@@ -18,7 +18,7 @@
       @click="goToDetail(item.ID)"
       class="items"
     >
-      <img :src="item.icon" alt="" :class="imgMobile" />
+      <img v-lazy="item.icon" alt="" :class="imgMobile" />
       <h3 :class="h3Mobile">{{ item.name }}</h3>
       <p>{{ item.desc }}</p>
     </el-col>

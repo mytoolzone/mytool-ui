@@ -18,7 +18,7 @@
               target="_blank"
               href="item.icon"
             >
-              <img class="card-cover" :src="item.icon" alt="card image" />
+              <img class="card-cover" v-lazy="item.icon" alt="card image" />
             </a>
           </div>
           <div class="content-container">

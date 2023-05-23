@@ -3,7 +3,8 @@
     <el-row type="flex" justify="center" align="middle">
       <el-col :sm="22" :md="22" :lg="3" :xl="3" :class="imageFlag">
         <div :class="siteico">
-          <img :src="article.icon" alt="Article Image" />
+          <img v-lazy="article.icon" alt="Article Image" />
+
           <div class="tool-actions" @click="collect">
             <el-tooltip
               :content="isCollect ? '取消收藏' : '加入收藏'"
@@ -316,6 +317,7 @@ export default {
     color: #fff6dd;
     width: 100%;
     > img {
+      width: 30%;
       max-width: 100%;
     }
     > h2 {
