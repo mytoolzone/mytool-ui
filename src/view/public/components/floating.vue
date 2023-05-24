@@ -134,8 +134,11 @@ export default {
     onClickLogo() {
       const currentTime = new Date().getTime()
       if (this.lastClickTime && currentTime - this.lastClickTime < 500) {
+        console.log('双击')
         this.dialogVisible = !this.dialogVisible
       } else {
+        console.log('单击')
+
         this.$store.commit('setIsCollapse', {
           isBlooen: !this.isCollapse
         })
