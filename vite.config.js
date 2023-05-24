@@ -41,7 +41,7 @@ export default ({
   const esbuild = {}
 
   const config = {
-    base: 'https://tools.mytool.zone/user', // index.html文件所在位置
+    base: 'http://frontend.mytool.zone', // index.html文件所在位置
     root: './', // js导入的资源路径，src
     resolve: {
       alias,

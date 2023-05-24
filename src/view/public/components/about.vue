@@ -11,6 +11,7 @@
       >
         <span class="close" @click="close()">&times;</span>
         <h2 class="title">Mytool.zone</h2>
+        <p class="content">
           Mytool.zone
           是一个全面的在线工具网站，提供了多种实用的工具和资源，包括文本处理、图像处理、代码编辑、加密解密、API
           接口等多个领域。这些工具和资源都是免费的，无需注册和下载，可以直接在网站上使用。
