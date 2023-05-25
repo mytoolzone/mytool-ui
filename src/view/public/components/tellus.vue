@@ -1,57 +1,69 @@
 <template>
-    <div class="modal">
-      <div class="modal-content">
+  <div class="modal">
+    <el-row>
+      <el-col class="modal-content" :lg="7" :md="7" :sm="20" :xl="20" :xs="20">
         <span class="close" @click="close">&times;</span>
         <h2 class="title">留言反馈</h2>
         <form @submit.prevent="submitForm" class="form">
           <div>
             <label for="name">姓名：</label>
-            <input class="input" type="text" id="name" v-model="form.name" />
+            <el-input v-model="form.name" placeholder="请输入姓名" />
           </div>
           <div>
             <label for="email">邮箱：</label>
-            <input class="input" type="email" id="email" v-model="form.email" />
+            <el-input
+              class="input"
+              type="email"
+              v-model="form.email"
+              placeholder="请输入邮箱"
+            />
           </div>
           <div>
             <label for="message">留言：</label>
-            <textarea class="input" id="message" v-model="form.message"></textarea>
+            <el-input
+              v-model="form.message"
+              :rows="2"
+              type="textarea"
+              placeholder="请输入留言"
+            />
           </div>
-          <button type="submit">提交</button>
+          <el-button type="primary" class="submit">提交</el-button>
         </form>
-      </div>
-    </div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
-  import { ref } from 'vue';
-  import {createIndexComment} from '@/api/comments'
+import { ref } from 'vue'
+import { createIndexComment } from '@/api/comments'
 
-  export default {
-    data() {
-        return {
-            form:{
-                name: '',
-                email: '',
-                message: '',
-            }
-        }
-    },
-    methods:{
-        submitForm () {
-            console.log(this.form);
-            var content = `name:${this.form.name},email:${this.form.email},content:${this.form.message}`
-            createIndexComment( {content: content}).then(res => {
-                if(res.code = 0){
-                    alert('感谢您的宝贵意见')
-                }
-            })
-            this.close()
-        },
-        close(){
-            this.$emit('close')
-        }
+export default {
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        message: ''
+      }
     }
-  };
+  },
+  methods: {
+    submitForm() {
+      console.log(this.form)
+      var content = `name:${this.form.name},email:${this.form.email},content:${this.form.message}`
+      createIndexComment({ content: content }).then((res) => {
+        if ((res.code = 0)) {
+          alert('感谢您的宝贵意见')
+        }
+      })
+      this.close()
+    },
+    close() {
+      this.$emit('close')
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -72,19 +84,15 @@
   margin: 15% auto;
   padding: 20px;
   border: 5px solid #4e4b4b;
-  width: 80%;
+
   color: #fbed9f;
-  width: 330px;
+
   line-height: 1.8em;
   word-break: break-word;
   white-space: pre-line;
 }
 .title {
   text-align: center;
-}
-.content {
-  width: 600px;
-  text-indent: 2em;
 }
 
 .close {
@@ -101,16 +109,17 @@
   text-decoration: none;
   cursor: pointer;
 }
-.from{
-    width: 400px;
-    margin: 0 auto;
-}
-.input{
-    width: 320px;
-    height: 25px;
-    border: none;
+
+.input {
+  width: 100%;
+  height: 25px;
+  border: none;
 }
 textarea.input {
-    min-height: 120px;
+  min-height: 120px;
+}
+.submit {
+  margin-top: 20px;
+  margin-left: 40%;
 }
 </style>
