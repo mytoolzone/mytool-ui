@@ -19,14 +19,9 @@
       @click="chooseMenu(tag)"
     >
       <el-icon><setting /> </el-icon>
-      <span v-show="isMobileFlag" style="font-style: normal">
+      <div>
         {{ tag.label }}
-      </span>
-      <template #title v-show="!isMobileFlag">
-        <span v-show="!isMobileFlag">
-          {{ tag.label }}
-        </span>
-      </template>
+      </div>
     </el-menu-item>
   </el-menu>
 
