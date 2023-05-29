@@ -51,7 +51,7 @@
       ></async-component>
     </div>
 
-    <Floating v-show="isMobileFlag"></Floating>
+    <Floating v-if="isMobileFlag"></Floating>
 
     <el-row v-if="article.attr == 'iframe'" justify="center" align="middle">
       <el-col
