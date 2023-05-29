@@ -109,7 +109,8 @@ export default {
       toolPackage: {},
       id: 0,
       isMaxWorkbench: false,
-      isCollect: false
+      isCollect: false,
+      isMobileFlag: false,
     }
   },
   computed: {
