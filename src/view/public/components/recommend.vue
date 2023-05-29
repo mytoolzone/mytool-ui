@@ -18,7 +18,8 @@
       @click="goToDetail(item.ID)"
       class="items"
     >
-      <img v-lazy="item.icon" alt="" :class="imgMobile" />
+      <!-- :class="imgMobile" -->
+      <img v-lazy="item.icon" alt=""  />
       <h3 :class="h3Mobile">{{ item.name }}</h3>
       <p>{{ item.desc }}</p>
     </el-col>
@@ -60,9 +61,9 @@ export default {
         return 2
       }
     },
-    imgMobile() {
-      return isMobile() ? 'img-Mobile' : ''
-    },
+    // imgMobile() {
+    //   return isMobile() ? 'img-Mobile' : ''
+    // },
     h3Mobile() {
       return isMobile() ? 'h3-Mobile' : ''
     }
@@ -132,7 +133,8 @@ export default {
 .items {
   cursor: pointer;
   text-align: center;
-  .img-Mobile {
+
+  img {
     width: 60%;
   }
   .h3-Mobile {
@@ -150,6 +152,7 @@ export default {
     overflow: hidden;
     color: rgb(102, 108, 119);
     text-align: initial;
+    margin-top: 10px;
   }
 }
 </style>
