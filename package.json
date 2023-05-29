@@ -2,8 +2,9 @@
   "name": "gin-vue-admin",
   "version": "2.5.5",
   "private": true,
+  // --host 0.0.0.0 是为了让局域网内的其他设备也可以访问
   "scripts": {
-    "serve": " vite --host --mode development",
+    "serve": " vite --host --mode development --host 0.0.0.0",
     "build": "vite build --mode production",
     "limit-build": "npm install increase-memory-limit-fixbug cross-env -g && npm run fix-memory-limit && node ./limit && npm run build",
     "preview": "vite preview",
