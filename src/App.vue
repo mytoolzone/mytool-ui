@@ -14,6 +14,12 @@ export default {
 
 <script setup>
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import { settingGrayscale, clearGrayscale } from '@/utils/operation-css-link'
+settingGrayscale()
+
+setTimeout(() => {
+  clearGrayscale()
+}, 5000)
 </script>
 <style lang="scss">
 // 引入初始化样式
